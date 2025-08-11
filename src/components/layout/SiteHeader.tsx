@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
 import {
   Clock,
   Facebook,
@@ -28,8 +29,11 @@ const SOCIAL_LINKS = [
 ];
 
 const SiteHeader = () => {
+  const scrollDirection = useScrollDirection();
+
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#FFFFFF] shadow-sm">
+    <>
+      {/* Top blue section - always static, scrolls normally */}
       <div className="bg-[#0E2F80]">
         <div className="container mx-auto flex items-center justify-between py-1.5">
           <div className="flex items-center gap-6 text-white">
@@ -44,8 +48,8 @@ const SiteHeader = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <div  className="w-[35px] h-[35px] bg-white flex justify-center items-center rounded-full">
-                <MapPin className="text-[#0E2F80] w-5 h-5"  />
+              <div className="w-[35px] h-[35px] bg-white flex justify-center items-center rounded-full">
+                <MapPin className="text-[#0E2F80] w-5 h-5" />
               </div>
               <div className="text-[11px]">
                 <p>
@@ -55,8 +59,8 @@ const SiteHeader = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <div  className="w-[35px] h-[35px] bg-white flex justify-center items-center rounded-full">
-                <Clock className="text-[#0E2F80] w-5 h-5"  />
+              <div className="w-[35px] h-[35px] bg-white flex justify-center items-center rounded-full">
+                <Clock className="text-[#0E2F80] w-5 h-5" />
               </div>
               <div className="text-[11px] leading-[1.1]">
                 <p>8am - 6pm : Monday - Wednesday, Friday</p>
@@ -81,45 +85,29 @@ const SiteHeader = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto flex h-[74px] items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <img className="h-14" src="/logo.png" alt="" />
-        </Link>
-        <nav
-          className="hidden md:flex items-center gap-6"
-          aria-label="Main Navigation"
-        >
-          {NAV_LINKS.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              className={({ isActive }) =>
-                `text-base transition-colors ${
-                  isActive
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                }`
-              }
-            >
-              {link.label}
-            </NavLink>
-          ))}
-        </nav>
-        <div className="hidden md:block">
-          <Button variant="hero" size="lg" className="hover-scale">
-            Book Appointment
-          </Button>
-        </div>
-      </div>
-      <div className="md:hidden border-t">
-        <div className="container mx-auto overflow-x-auto">
-          <div className="flex gap-4 py-3">
+
+      {/* Navigation section - this will be fixed on scroll up with animation */}
+      <header 
+        className={`w-full bg-[#FFFFFF] transition-all duration-700 ease-in-out transform ${
+          scrollDirection === 'up' 
+            ? 'fixed top-0 left-0 right-0 z-50 translate-y-0 opacity-100 shadow-sm' 
+            : 'relative translate-y-0 opacity-100'
+        }`}
+      >
+        <div className="container mx-auto flex h-[74px] items-center justify-between">
+          <Link to="/" className="flex items-center gap-2">
+            <img className="h-14" src="/logo.png" alt="" />
+          </Link>
+          <nav
+            className="hidden md:flex items-center gap-6"
+            aria-label="Main Navigation"
+          >
             {NAV_LINKS.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 className={({ isActive }) =>
-                  `whitespace-nowrap text-sm ${
+                  `text-base transition-colors ${
                     isActive
                       ? "text-primary"
                       : "text-muted-foreground hover:text-foreground"
@@ -129,10 +117,38 @@ const SiteHeader = () => {
                 {link.label}
               </NavLink>
             ))}
+          </nav>
+          <div className="hidden md:block">
+            <Button variant="hero" size="lg" className="hover-scale">
+              Book Appointment
+            </Button>
           </div>
         </div>
-      </div>
-    </header>
+
+        {/* Mobile navigation */}
+        <div className="md:hidden border-t">
+          <div className="container mx-auto overflow-x-auto">
+            <div className="flex gap-4 py-3">
+              {NAV_LINKS.map((link) => (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  className={({ isActive }) =>
+                    `whitespace-nowrap text-sm ${
+                      isActive
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+            </div>
+          </div>
+        </div>
+      </header>
+    </>
   );
 };
 

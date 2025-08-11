@@ -1,13 +1,12 @@
+import SubHeader from "@/components/layout/SubHeader";
 import Page from "./_Page";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const Faqs = () => (
   <Page title="FAQ's | Dentalini" description="Answers to common questions about appointments, comfort, and treatments at Dentalini.">
+      <SubHeader title='Frequently Asked Questions' description='If you don’t see your question here, we’re happy to help by phone or email.' />
     <section className="container mx-auto py-12">
-      <header className="mb-8">
-        <h1 className="text-4xl font-semibold text-primary">Frequently Asked Questions</h1>
-        <p className="mt-2 max-w-2xl text-muted-foreground">If you don’t see your question here, we’re happy to help by phone or email.</p>
-      </header>
+   
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
           <AccordionTrigger>Do you offer gentle care for anxious patients?</AccordionTrigger>
