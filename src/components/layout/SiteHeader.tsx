@@ -1,0 +1,139 @@
+import { Link, NavLink } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import {
+  Clock,
+  Facebook,
+  Instagram,
+  Linkedin,
+  MapPin,
+  Phone,
+} from "lucide-react";
+
+const NAV_LINKS = [
+  { to: "/", label: "Home" },
+  { to: "/services", label: "Services" },
+  { to: "/team", label: "Meet the Team" },
+  { to: "/faqs", label: "FAQ's" },
+  { to: "/blog", label: "Blog" },
+  { to: "/visit", label: "Visit Dentalini" },
+  { to: "/contact", label: "Contact Us" },
+  { to: "/gallery", label: "Gallery" },
+  // { to: "/reviews", label: "Reviews" },
+];
+
+const SOCIAL_LINKS = [
+  { to: "https://www.facebook.com/dentalini", icon: Facebook },
+  { to: "https://www.instagram.com/dentalini", icon: Instagram },
+  { to: "https://www.linkedin.com/company/dentalini", icon: Linkedin },
+];
+
+const SiteHeader = () => {
+  return (
+    <header className="sticky top-0 z-40 w-full bg-[#FFFFFF] shadow-sm">
+      <div className="bg-[#0E2F80]">
+        <div className="container mx-auto flex items-center justify-between py-1.5">
+          <div className="flex items-center gap-6 text-white">
+            <div className="flex items-center gap-2">
+              <div className="w-[35px] h-[35px] bg-white flex justify-center items-center rounded-full">
+                <Phone className="text-[#0E2F80] w-5 h-5" />
+              </div>
+              <div className="text-[11px]">
+                <p>Phone No.</p>
+                <p>02 8920 3000</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <div  className="w-[35px] h-[35px] bg-white flex justify-center items-center rounded-full">
+                <MapPin className="text-[#0E2F80] w-5 h-5"  />
+              </div>
+              <div className="text-[11px]">
+                <p>
+                  Suite 3, 118 Alfred St South, <br /> Milsons Point NSW 2061
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <div  className="w-[35px] h-[35px] bg-white flex justify-center items-center rounded-full">
+                <Clock className="text-[#0E2F80] w-5 h-5"  />
+              </div>
+              <div className="text-[11px] leading-[1.1]">
+                <p>8am - 6pm : Monday - Wednesday, Friday</p>
+                <p>8.30am -2pm : Saturday</p>
+                <p>Closed : Thursday, Sunday, Public holiday</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {SOCIAL_LINKS.map((link) => (
+              <a
+                key={link.to}
+                href={link.to}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-[#0E2F80] border w-[35px] h-[35px] flex justify-center items-center rounded-full border-white hover:bg-white transition-colors"
+              >
+                <link.icon className="w-5 h-5" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="container mx-auto flex h-[74px] items-center justify-between">
+        <Link to="/" className="flex items-center gap-2">
+          <img className="h-14" src="/logo.png" alt="" />
+        </Link>
+        <nav
+          className="hidden md:flex items-center gap-6"
+          aria-label="Main Navigation"
+        >
+          {NAV_LINKS.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              className={({ isActive }) =>
+                `text-base transition-colors ${
+                  isActive
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
+                }`
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </nav>
+        <div className="hidden md:block">
+          <Button variant="hero" size="lg" className="hover-scale">
+            Book Appointment
+          </Button>
+        </div>
+      </div>
+      <div className="md:hidden border-t">
+        <div className="container mx-auto overflow-x-auto">
+          <div className="flex gap-4 py-3">
+            {NAV_LINKS.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) =>
+                  `whitespace-nowrap text-sm ${
+                    isActive
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default SiteHeader;
