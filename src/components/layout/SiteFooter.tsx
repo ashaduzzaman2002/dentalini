@@ -23,20 +23,35 @@ const SiteFooter = () => {
           <div className="container mx-auto flex items-center justify-end">
             <div className="w-[551px] h-[551px] bg-[#1E9DC1] rounded-full relative top-5"></div>
             <div className="w-[551px] h-[551px] bg-white absolute rounded-full pt-[103px] pb-[96px] px-[130px] pointer-events-auto  ">
-              <h3 className="text-center text-3xl font-semibold text-primary">Get in Touch</h3>
+              <h3 className="text-center text-3xl font-semibold text-primary">
+                Get in Touch
+              </h3>
               <div className="flex flex-col gap-4 mt-6">
-                <Input placeholder="First Name" className="bg-[#F7F7F7] rounded" />
-                <Input placeholder="Phone Number" className="bg-[#F7F7F7] rounded" />
-                <Input type="email" placeholder="Email" className="bg-[#F7F7F7] rounded" />
-                <Textarea className="resize-none bg-[#F7F7F7] rounded" placeholder="How can we help you?" />
-                <Button className="w-full" variant="hero">Submit</Button>
+                <Input
+                  placeholder="First Name"
+                  className="bg-[#F7F7F7] rounded"
+                />
+                <Input
+                  placeholder="Phone Number"
+                  className="bg-[#F7F7F7] rounded"
+                />
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  className="bg-[#F7F7F7] rounded"
+                />
+                <Textarea
+                  className="resize-none bg-[#F7F7F7] rounded"
+                  placeholder="How can we help you?"
+                />
+                <Button className="w-full" variant="hero">
+                  Submit
+                </Button>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-    
 
       <footer className="bg-[#0B131E] ">
         <div className="container mx-auto pt-[70px] pb-12">
@@ -44,13 +59,17 @@ const SiteFooter = () => {
             <img className="h-14" src="/logo.png" alt="" />
           </Link>
           <p className="text-sm text-white/60 max-w-[490px]">
-            At Dentalini we believe that everybody deserves good health. It's all about giving you quality treatment by Dentists that are experienced, gentle and accessible for adults and children.
+            At Dentalini we believe that everybody deserves good health. It's
+            all about giving you quality treatment by Dentists that are
+            experienced, gentle and accessible for adults and children.
           </p>
         </div>
 
-        <div className="container mx-auto grid grid-cols-1 gap-10 py-12 md:grid-cols-3 border-t-white/10 border-t text-white">
+        <div className="container mx-auto grid grid-cols-1 gap-10 py-12 md:grid-cols-2 lg:grid-cols-4 border-t-white/10 border-t text-white">
           <div>
-            <h4 className="mb-3 font-medium  text-white/60 text-sm uppercase tracking-widest">Quick Links</h4>
+            <h4 className="mb-3 font-medium  text-white/60 text-sm uppercase tracking-widest">
+              Quick Links
+            </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link className="story-link" to="/services">
@@ -72,10 +91,75 @@ const SiteFooter = () => {
                   Reviews
                 </Link>
               </li>
+              <li>
+                <Link className="story-link" to="/gallery">
+                  Gallery
+                </Link>
+              </li>
             </ul>
           </div>
+
           <div>
-            <h4 className="mb-3 font-medium text-white/60 text-sm uppercase tracking-widest">Contact</h4>
+            <h4 className="mb-3 font-medium text-white/60 text-sm uppercase tracking-widest">
+              Services
+            </h4>
+            <ul className="space-y-2 text-sm text-white">
+              <li>
+                <Link className="story-link" to="/services">
+                  General Dentistry
+                </Link>
+              </li>
+              <li>
+                <Link className="story-link" to="/services">
+                  Cosmetic Dentistry
+                </Link>
+              </li>
+              <li>
+                <Link className="story-link" to="/services">
+                  Orthodontics
+                </Link>
+              </li>
+              <li>
+                <Link className="story-link" to="/services">
+                  Teeth Whitening
+                </Link>
+              </li>
+              <li>
+                <Link className="story-link" to="/services">
+                  Dental Implants
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-3 font-medium text-white/60 text-sm uppercase tracking-widest">
+              Opening Hours
+            </h4>
+            <ul className="space-y-2 text-sm text-white">
+             
+
+
+
+              <li>
+                8am - 6pm : Monday - Wednesday, Friday
+              </li>
+              <li>
+                8.30am -2pm : Saturday
+
+              </li>
+              <li>
+                Closed : Thursday, Sunday, Public holiday
+              </li>
+              
+            </ul>
+          </div>
+
+      
+          <div>
+            <h4 className="mb-3 font-medium text-white/60 text-sm uppercase tracking-widest">
+              Contact
+            </h4>
             <ul className="space-y-2 text-sm text-white">
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4" /> 2 8920 3000
@@ -84,8 +168,9 @@ const SiteFooter = () => {
                 <Mail className="h-4 w-4" /> info@dentalini.com.au
               </li>
               <li className="flex items-center gap-2">
-                <MapPin className="h-4 w-4" /> Suite 3, 118 Alfred St South, <br />
-Milsons Point NSW 2061
+                <MapPin className="h-4 w-4" /> Suite 3, 118 Alfred St South,{" "}
+                <br />
+                Milsons Point NSW 2061
               </li>
             </ul>
           </div>
