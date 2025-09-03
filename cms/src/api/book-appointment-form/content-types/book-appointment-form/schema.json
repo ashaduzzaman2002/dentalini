@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "book_appointment_forms",
+  "info": {
+    "singularName": "book-appointment-form",
+    "pluralName": "book-appointment-forms",
+    "displayName": "Book Appointment Form"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "Email": {
+      "type": "string",
+      "required": true
+    },
+    "Phone": {
+      "type": "string",
+      "required": true
+    },
+    "PreferedDate": {
+      "type": "date",
+      "required": true
+    },
+    "preferredTime": {
+      "type": "time",
+      "required": true
+    },
+    "Message": {
+      "type": "blocks",
+      "required": true
+    },
+    "our_service": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::our-service.our-service"
+    }
+  }
+}

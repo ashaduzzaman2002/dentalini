@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./app
+    container_name: dentalini_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+
+  cms:
+    build: ./cms
+    container_name: dentalini_cms
+    ports:
+      - "1337:1337"
+    volumes:
+      - ./cms:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DATABASE_CLIENT=sqlite
+      - DATABASE_FILENAME=.tmp/data.db
