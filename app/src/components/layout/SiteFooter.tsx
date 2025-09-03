@@ -6,15 +6,16 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
-const excludeLinks = ["/visit", '/contact'];
+const includedLinks = ["/", "/about"];
 
 const SiteFooter = () => {
   const pathname = usePathname();
 
   return (
     <div>
-      {excludeLinks.includes(pathname) ? null : (
+      {includedLinks.includes(pathname) && (
         <div className="h-[460px] w-full bg-muted relative">
           <div>
             <iframe
@@ -27,7 +28,12 @@ const SiteFooter = () => {
             ></iframe>
           </div>
 
-          <div className="absolute top-[60px]  w-full pointer-events-none">
+          <div
+            className={cn(
+              includedLinks.includes(pathname) ? "top-[60px]" : "",
+              "absolute  w-full pointer-events-none"
+            )}
+          >
             <div className="container mx-auto flex items-center justify-end">
               <div className="w-[551px] h-[551px] bg-[#1E9DC1] rounded-full relative top-5"></div>
               <div className="w-[551px] h-[551px] bg-white absolute rounded-full pt-[103px] pb-[96px] px-[130px] pointer-events-auto  ">
