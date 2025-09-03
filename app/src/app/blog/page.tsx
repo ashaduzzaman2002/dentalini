@@ -1,5 +1,6 @@
 import SubHeader from "@/components/layout/SubHeader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -117,9 +118,25 @@ const Blog = () => (
         ))}
       </div>
 
-      <div>
-        
-      </div>
+      <Pagination className="mt-12">
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious href="#" className="rounded-full" />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" className="rounded-full">1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" isActive className="rounded-full bg-[#0E2F80] text-white hover:bg-[#0E2F80]/90">2</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" className="rounded-full">3</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext href="#" className="rounded-full" />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </section>
   </div>
 );
