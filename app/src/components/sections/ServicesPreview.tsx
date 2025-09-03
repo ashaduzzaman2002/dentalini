@@ -48,8 +48,8 @@ const ServicesPreview = () => {
           We combine expertise and empathy to deliver beautiful, healthy smiles.
         </p>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map(({ icon: Icon, title, desc }) => (
-            <div className="p-7 bg-[#FFFFFF] shadow-lg rounded-[14px]">
+          {services.map(({ icon, title, desc }, index) => (
+            <div key={index} className="p-7 bg-[#FFFFFF] shadow-lg rounded-[14px]">
               <div>
                 <img
                   className="w-full aspect-auto object-cover rounded-[10px]"

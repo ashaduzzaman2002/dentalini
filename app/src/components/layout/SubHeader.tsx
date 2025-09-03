@@ -1,6 +1,9 @@
 import React from 'react'
 
-const SubHeader = ({title, description}) => {
+const SubHeader = ({title, description}: {
+  title: string;
+  description: string;
+}) => {
   return (
     <header
       className="h-[267px]"

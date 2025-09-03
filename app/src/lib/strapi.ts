@@ -1,12 +1,17 @@
 const STRAPI_URL =
   process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 
+interface Block {
+  type: string;
+  children?: { text: string }[];
+}
+
 export interface BlogPost {
   id: number;
   Title: string;
   Slug: string;
   Excerpt: string;
-  Content: any[];
+  Content: Block[];
   Author: string;
   ReadTime: number;
   Tags: string[];

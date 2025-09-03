@@ -1,7 +1,7 @@
 import SubHeader from "@/components/layout/SubHeader";
 import BlogCard from "@/components/blog/BlogCard";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { getBlogPosts } from "@/lib/strapi";
+import { getBlogPosts, BlogPost } from "@/lib/strapi";
 
 interface BlogPageProps {
   searchParams: { page?: string };
@@ -24,7 +24,7 @@ export default async function Blog({ searchParams }: BlogPageProps) {
         {posts?.length > 0 ? (
           <>
             <div className="grid gap-6 md:grid-cols-3">
-              {posts.map((post: any) => (
+              {posts.map((post: BlogPost) => (
                 <BlogCard key={post.id} post={post} />
               ))}
             </div>

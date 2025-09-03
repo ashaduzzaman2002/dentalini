@@ -1,14 +1,21 @@
+interface Block {
+  type: string;
+  level?: number;
+  format?: string;
+  children?: { text: string; bold?: boolean; italic?: boolean }[];
+}
+
 interface BlocksRendererProps {
-  content: any[];
+  content: Block[];
 }
 
 export default function BlogContent({ content }: BlocksRendererProps) {
-  const renderBlock = (block: any, index: number) => {
+  const renderBlock = (block: Block, index: number) => {
     switch (block.type) {
       case 'paragraph':
         return (
           <p key={index} className="mb-4 text-gray-700 leading-relaxed">
-            {block.children?.map((child: any, childIndex: number) => {
+            {block.children?.map((child, childIndex: number) => {
               if (child.bold) return <strong key={childIndex}>{child.text}</strong>;
               if (child.italic) return <em key={childIndex}>{child.text}</em>;
               return child.text;
@@ -17,7 +24,7 @@ export default function BlogContent({ content }: BlocksRendererProps) {
         );
       
       case 'heading':
-        const HeadingTag = `h${block.level}` as keyof JSX.IntrinsicElements;
+        const HeadingTag = `h${block.level}` as keyof React.JSX.IntrinsicElements;
         const headingClasses = {
           1: 'text-3xl font-bold mb-6 text-[#0B131E]',
           2: 'text-2xl font-semibold mb-4 text-[#0B131E]',

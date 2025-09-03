@@ -13,7 +13,7 @@ export default function BlogCard({ post }: BlogCardProps) {
     <div className="bg-white shadow-lg px-[30px] pt-7 pb-10 rounded-[14px]">
       <div className="w-full mb-[38px] h-[250px] relative">
         <Image
-          className="w-full object-cover rounded-[10px]"
+          className="w-full object-cover rounded-[10px] h-full"
           src={getStrapiImageUrl(FeaturedImage.url)}
           alt={FeaturedImage.alternativeText || Title}
           width={392}
