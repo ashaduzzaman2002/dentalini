@@ -1,144 +1,80 @@
 import SubHeader from "@/components/layout/SubHeader";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import BlogCard from "@/components/blog/BlogCard";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import Image from "next/image";
-import Link from "next/link";
+import { getBlogPosts } from "@/lib/strapi";
 
-const posts = [
-  {
-    slug: "feminine-dental-care",
-    title: "What Feminine Dental Care Means to Us",
-    excerpt: "Our approach to comfort, empathy, and clinical excellence.",
-    image: "/thumbnail_shutterstock_70216339.jpg",
-  },
-  {
-    slug: "brighten-your-smile",
-    title: "Brighten Your Smile Safely",
-    excerpt: "Professional whitening vs. at-home kits — what to know.",
-    image: "/thumbnail_shutterstock_70216339.jpg",
-  },
-  {
-    slug: "first-visit",
-    title: "Your First Visit at Dentalini",
-    excerpt: "What to expect and how we make it easy.",
-    image: "/thumbnail_shutterstock_70216339.jpg",
-  },
-  {
-    slug: "feminine-dental-care",
-    title: "What Feminine Dental Care Means to Us",
-    excerpt: "Our approach to comfort, empathy, and clinical excellence.",
-    image: "/thumbnail_shutterstock_70216339.jpg",
-  },
-  {
-    slug: "brighten-your-smile",
-    title: "Brighten Your Smile Safely",
-    excerpt: "Professional whitening vs. at-home kits — what to know.",
-    image: "/thumbnail_shutterstock_70216339.jpg",
-  },
-  {
-    slug: "first-visit",
-    title: "Your First Visit at Dentalini",
-    excerpt: "What to expect and how we make it easy.",
-    image: "/thumbnail_shutterstock_70216339.jpg",
-  },
-  {
-    slug: "feminine-dental-care",
-    title: "What Feminine Dental Care Means to Us",
-    excerpt: "Our approach to comfort, empathy, and clinical excellence.",
-    image: "/thumbnail_shutterstock_70216339.jpg",
-  },
-  {
-    slug: "brighten-your-smile",
-    title: "Brighten Your Smile Safely",
-    excerpt: "Professional whitening vs. at-home kits — what to know.",
-    image: "/thumbnail_shutterstock_70216339.jpg",
-  },
-  {
-    slug: "first-visit",
-    title: "Your First Visit at Dentalini",
-    excerpt: "What to expect and how we make it easy.",
-    image: "/thumbnail_shutterstock_70216339.jpg",
-  },
-  {
-    slug: "feminine-dental-care",
-    title: "What Feminine Dental Care Means to Us",
-    excerpt: "Our approach to comfort, empathy, and clinical excellence.",
-    image: "/thumbnail_shutterstock_70216339.jpg",
-  },
-  {
-    slug: "brighten-your-smile",
-    title: "Brighten Your Smile Safely",
-    excerpt: "Professional whitening vs. at-home kits — what to know.",
-    image: "/thumbnail_shutterstock_70216339.jpg",
-  },
-  {
-    slug: "first-visit",
-    title: "Your First Visit at Dentalini",
-    excerpt: "What to expect and how we make it easy.",
-    image: "/thumbnail_shutterstock_70216339.jpg",
-  },
+interface BlogPageProps {
+  searchParams: { page?: string };
+}
+
+export default async function Blog({ searchParams }: BlogPageProps) {
+  const currentPage = Number(searchParams.page) || 1;
+  const pageSize = 9;
   
-];
-
-const Blog = () => (
-  <div>
-    <SubHeader
-      title="Our Blog"
-      description="Insights on comfort-first dentistry, oral care, and smile confidence."
-    />
-    <section className="container mx-auto py-20">
-      <div className="grid gap-6 md:grid-cols-3">
-        {posts.map((p) => (
-          <div className="bg-white shadow-lg px-[30px] pt-7 pb-10 rounded-[14px]">
-            <div className="w-full mb-[38px] h-[250px] relative">
-              <Image
-                className="w-full object-cover rounded-[10px]"
-                src={p.image}
-                alt={p.title}
-                width={392}
-                height={250}
-              />
-              <div className="bg-[#0AA9E5] absolute px-[18px] py-[7.5px] rounded-[6px] -bottom-3 left-1/2 -translate-x-1/2 h-[29px]">
-                <p className="text-xs font-semibold  uppercase text-white ">Jul 19, 2022</p>
-              </div>
+  const { data: posts, meta } = await getBlogPosts(currentPage, pageSize);
+  const totalPages = meta?.pagination?.pageCount || 1;
+  
+  return (
+    <div>
+      <SubHeader
+        title="Our Blog"
+        description="Insights on comfort-first dentistry, oral care, and smile confidence."
+      />
+      <section className="container mx-auto py-20">
+        {posts?.length > 0 ? (
+          <>
+            <div className="grid gap-6 md:grid-cols-3">
+              {posts.map((post: any) => (
+                <BlogCard key={post.id} post={post} />
+              ))}
             </div>
 
-            <div>
-              <p className="font-semibold text-xl mb-4 text-center text-[#0B131E]">{p.title}</p>
-              <p className="text-[#0B131E]/60 text-center mb-[18px] font-normal">{p.excerpt}</p>
-
-              <Link
-                href={`/blog/${p.slug}`}
-                className="text-[#0E2F80] p-1 border-b border-[#0E2F80] font-medium mx-auto flex w-fit"
-              >
-                Read More &rarr;
-              </Link>
-            </div>
+            {totalPages > 1 && (
+              <Pagination className="mt-12">
+                <PaginationContent>
+                  {currentPage > 1 && (
+                    <PaginationItem>
+                      <PaginationPrevious 
+                        href={`/blog?page=${currentPage - 1}`} 
+                        className="rounded-full" 
+                      />
+                    </PaginationItem>
+                  )}
+                  
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <PaginationItem key={page}>
+                      <PaginationLink 
+                        href={`/blog?page=${page}`}
+                        isActive={page === currentPage}
+                        className={`rounded-full ${
+                          page === currentPage 
+                            ? 'bg-[#0E2F80] text-white hover:bg-[#0E2F80]/90' 
+                            : ''
+                        }`}
+                      >
+                        {page}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  
+                  {currentPage < totalPages && (
+                    <PaginationItem>
+                      <PaginationNext 
+                        href={`/blog?page=${currentPage + 1}`} 
+                        className="rounded-full" 
+                      />
+                    </PaginationItem>
+                  )}
+                </PaginationContent>
+              </Pagination>
+            )}
+          </>
+        ) : (
+          <div className="text-center py-20">
+            <p className="text-gray-600">No blog posts found.</p>
           </div>
-        ))}
-      </div>
-
-      <Pagination className="mt-12">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href="#" className="rounded-full" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#" className="rounded-full">1</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#" isActive className="rounded-full bg-[#0E2F80] text-white hover:bg-[#0E2F80]/90">2</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#" className="rounded-full">3</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" className="rounded-full" />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
-    </section>
-  </div>
-);
-
-export default Blog;
+        )}
+      </section>
+    </div>
+  );
+}
