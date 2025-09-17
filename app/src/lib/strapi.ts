@@ -28,6 +28,21 @@ export interface BlogPost {
   };
 }
 
+export interface Service {
+  id: number;
+  Title: string;
+  Slug: string;
+  short_description: Block[];
+  Content: Block[];
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  Image_url: {
+    url: string;
+    alternativeText: string;
+  };
+}
+
 export interface BlogCategory {
   id: number;
   attributes: {
@@ -60,6 +75,22 @@ export async function getBlogCategories() {
   const response = await fetch(`${STRAPI_URL}/api/blog-categories?populate=*`, {
     next: { revalidate: 300 },
   });
+  return response.json();
+}
+
+export async function getServices() {
+  const response = await fetch(
+    `${STRAPI_URL}/api/our-services?populate=*&sort=createdAt:asc`,
+    { next: { revalidate: 300 } }
+  );
+  return response.json();
+}
+
+export async function getService(slug: string) {
+  const response = await fetch(
+    `${STRAPI_URL}/api/our-services?filters[Slug][$eq]=${slug}&populate=*`,
+    { next: { revalidate: 300 } }
+  );
   return response.json();
 }
 

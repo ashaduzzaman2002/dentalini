@@ -19,10 +19,11 @@ const AboutPreview = () => {
             <div className="absolute -bottom-3 -right-3 bg-gradient-to-br from-[#0091BA]/0 via-[#0091BA]/30 to-[#0091BA] rounded-full w-full h-full"></div>
             <div className="w-[190px] aspect-square bg-white p-2 absolute -bottom-[20px] -right-[20px] z-10 rounded-full">
               <div className="bg-[#0E2F80] w-full h-full text-white flex flex-col justify-center items-center rounded-full">
-                <h3 className="text-5xl font-bold">{new Date().getFullYear() - 2018 + 1}+</h3>
+                <h3 className="text-5xl font-bold">
+                  {new Date().getFullYear() - 2018 + 1}+
+                </h3>
                 <p>Years of Experience</p>
               </div>
-
             </div>
           </div>
 
@@ -39,21 +40,34 @@ const AboutPreview = () => {
               experienced, gentle and accessible for adults and children.
             </p>
             <p className="text-muted-foreground mb-2">
-              At our Milsons Point office, we offer a range of general dental
-              health procedures to ensure teeth are in optimum condition. We
-              strongly believe that prevention is better than cure. The key to
-              successful oral health is identifying and treating potential
-              problems before they become an issue.
+              We believe in a holistic approach to dentistry, one which
+              prioritises compassion, enthusiasm and care; putting a patient’s
+              needs first. Every patient’s treatment plan is unique and tailored
+              to the individual, and revolves around the options we can provide
+              based on what they would like to achieve, while also considering
+              their personal and financial circumstances.
+            </p>
+            <p className="text-muted-foreground mb-2">
+              We offer a range of general dental health procedures to ensure
+              teeth are in optimum condition. We strongly believe that
+              prevention is better than cure. The key to successful oral health
+              is identifying and treating potential problems before they become
+              an issue.
+            </p>
+            <p className="text-muted-foreground mb-2">
+              We use the latest innovative procedures to repair tooth decay,
+              tooth trauma or any disease of the teeth and gums. The goal is to
+              prevent, uncover or treat problems as early as possible.
             </p>
             <p className="text-muted-foreground">
-              At Dentalini every new patient has a treatment plan and every
-              treatment plan incorporates a variety of procedures to help
-              prevent decay or disease of the teeth, jaws, gums and tongue. We
-              like to customise your dental treatment so that it is personalised
-              to your needs.
+              The practice has state-of-art machines including in-house CBCT
+              (3-D X-ray) machine, Intra-Oral scanner and Philips Zoom Teeth
+              Whitening.
             </p>
 
-            <Button variant="hero" size="lg" className="mt-10">Learn More</Button>
+            <Button variant="hero" size="lg" className="mt-10">
+              Learn More
+            </Button>
           </div>
         </div>
       </section>

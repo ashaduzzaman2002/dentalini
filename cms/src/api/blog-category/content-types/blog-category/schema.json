@@ -17,17 +17,7 @@
     },
     "Slug": {
       "type": "uid",
-      "targetField": "Name",
       "required": true
-    },
-    "Description": {
-      "type": "text"
-    },
-    "blog_posts": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::blog-post.blog-post",
-      "mappedBy": "blog_category"
     }
   }
 }

@@ -385,14 +385,9 @@ export interface ApiBlogCategoryBlogCategory
     draftAndPublish: true;
   };
   attributes: {
-    blog_posts: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::blog-post.blog-post'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Description: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -401,7 +396,7 @@ export interface ApiBlogCategoryBlogCategory
       Schema.Attribute.Private;
     Name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    Slug: Schema.Attribute.UID<'Name'> & Schema.Attribute.Required;
+    Slug: Schema.Attribute.UID & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -419,18 +414,14 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    Author: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'Dr. Dentalini'>;
     blog_category: Schema.Attribute.Relation<
-      'manyToOne',
+      'oneToOne',
       'api::blog-category.blog-category'
     >;
     Content: Schema.Attribute.Blocks & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Excerpt: Schema.Attribute.Text & Schema.Attribute.Required;
-    FeaturedImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -438,10 +429,9 @@ export interface ApiBlogPostBlogPost extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    ReadTime: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<5>;
-    Slug: Schema.Attribute.UID<'Title'> & Schema.Attribute.Required;
+    Slug: Schema.Attribute.UID & Schema.Attribute.Required;
     Tags: Schema.Attribute.Enumeration<
-      ['tips', 'hygiene', 'checkup', 'prevention', 'cosmetic', 'emergency']
+      ['tips', 'hygiene', 'checkup', 'prevention']
     >;
     Title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;

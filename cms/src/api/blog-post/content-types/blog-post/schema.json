@@ -17,28 +17,16 @@
     },
     "Slug": {
       "type": "uid",
-      "targetField": "Title",
-      "required": true
-    },
-    "Excerpt": {
-      "type": "text",
       "required": true
     },
     "Content": {
       "type": "blocks",
       "required": true
     },
-    "FeaturedImage": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": ["images"]
-    },
     "blog_category": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::blog-category.blog-category",
-      "inversedBy": "blog_posts"
+      "relation": "oneToOne",
+      "target": "api::blog-category.blog-category"
     },
     "Tags": {
       "type": "enumeration",
@@ -46,19 +34,8 @@
         "tips",
         "hygiene",
         "checkup",
-        "prevention",
-        "cosmetic",
-        "emergency"
-      ],
-      "multiple": true
-    },
-    "Author": {
-      "type": "string",
-      "default": "Dr. Dentalini"
-    },
-    "ReadTime": {
-      "type": "integer",
-      "default": 5
+        "prevention"
+      ]
     }
   }
 }
