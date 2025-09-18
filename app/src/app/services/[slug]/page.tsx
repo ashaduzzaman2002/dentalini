@@ -55,9 +55,7 @@ export async function generateMetadata({ params }: ServicePageProps) {
   const service = services[0];
 
   return {
-    title: service.attributes.Title,
-    description: service.attributes.short_description?.map(block => 
-      block.children?.map(child => child.text).join('')
-    ).join(' ').slice(0, 160),
+    title: service.Title,
+    description: service.description.slice(0, 160),
   };
 }
