@@ -1,7 +1,19 @@
+import { Metadata } from "next";
 import SubHeader from "@/components/layout/SubHeader";
 import BlogCard from "@/components/blog/BlogCard";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { getBlogPosts, BlogPost } from "@/lib/strapi";
+
+export const metadata: Metadata = {
+  title: "Dental Blog | Expert Tips & Insights | Dentalini",
+  description: "Discover expert dental tips, oral health insights, and the latest in comfort-first dentistry from Dentalini's experienced team.",
+  keywords: "dental blog, oral health tips, dentist insights, dental care, teeth cleaning, dental hygiene",
+  openGraph: {
+    title: "Dental Blog | Expert Tips & Insights | Dentalini",
+    description: "Discover expert dental tips, oral health insights, and the latest in comfort-first dentistry from Dentalini's experienced team.",
+    type: "website",
+  },
+};
 
 interface BlogPageProps {
   searchParams: { page?: string };

@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getBlogPost } from "@/lib/strapi";
@@ -7,6 +8,30 @@ import SubHeader from "@/components/layout/SubHeader";
 
 interface BlogPostPageProps {
   params: { slug: string };
+}
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = params;
+  const { data: posts } = await getBlogPost(slug);
+
+  if (!posts || posts.length === 0) {
+    return {
+      title: "Blog Post Not Found | Dentalini",
+    };
+  }
+
+  const post = posts[0];
+  
+  return {
+    title: `${post.title} | Dentalini Blog`,
+    description: post.excerpt || post.title,
+    keywords: `${post.title}, dental care, oral health, dentist, Dentalini`,
+    openGraph: {
+      title: `${post.title} | Dentalini Blog`,
+      description: post.excerpt || post.title,
+      type: "article",
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
