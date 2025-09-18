@@ -2,7 +2,8 @@ interface Block {
   type: string;
   level?: number;
   format?: string;
-  children?: { text: string; bold?: boolean; italic?: boolean }[];
+  url?: string;
+  children?: { text: string; bold?: boolean; italic?: boolean; type?: string; url?: string }[];
 }
 
 interface BlocksRendererProps {
@@ -16,6 +17,13 @@ export default function BlogContent({ content }: BlocksRendererProps) {
         return (
           <p key={index} className="mb-4 text-gray-700 leading-relaxed">
             {block.children?.map((child, childIndex: number) => {
+              if (child.type === 'link') {
+                return (
+                  <a key={childIndex} href={child.url} className="text-[#0AA9E5] hover:underline">
+                    {child.children?.[0]?.text || child.text}
+                  </a>
+                );
+              }
               if (child.bold) return <strong key={childIndex}>{child.text}</strong>;
               if (child.italic) return <em key={childIndex}>{child.text}</em>;
               return child.text;

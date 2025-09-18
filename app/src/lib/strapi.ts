@@ -65,7 +65,7 @@ export async function getBlogPosts(page = 1, pageSize = 9) {
 
 export async function getBlogPost(slug: string) {
   const response = await fetch(
-    `${STRAPI_URL}/api/blog-posts?filters[Slug][$eq]=${slug}&populate=*`,
+    `${STRAPI_URL}/api/blog-posts?filters[slug][$eq]=${slug}&populate=*`,
     { next: { revalidate: 60 } }
   );
   return response.json();
