@@ -1,9 +1,18 @@
+interface BlockChild {
+  text: string;
+  bold?: boolean;
+  italic?: boolean;
+  type?: string;
+  url?: string;
+  children?: BlockChild[]; // Allow nested children for link blocks
+}
+
 interface Block {
   type: string;
   level?: number;
   format?: string;
   url?: string;
-  children?: { text: string; bold?: boolean; italic?: boolean; type?: string; url?: string }[];
+  children?: BlockChild[];
 }
 
 interface BlocksRendererProps {
