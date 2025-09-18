@@ -11,17 +11,17 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Slug": {
-      "type": "uid",
-      "required": true
-    },
     "Title": {
       "type": "string",
       "required": true
     },
-    "short_description": {
-      "type": "blocks",
+    "Slug": {
+      "type": "uid",
+      "targetField": "Title",
       "required": true
+    },
+    "description": {
+      "type": "text"
     },
     "Content": {
       "type": "blocks",

@@ -8,21 +8,21 @@ interface Block {
 
 export interface BlogPost {
   id: number;
-  Title: string;
-  Slug: string;
-  Excerpt: string;
-  Content: Block[];
-  Author: string;
-  ReadTime: number;
-  Tags: string[];
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: Block[];
+  author: string;
+  readTime: number;
+  tags: string[];
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  FeaturedImage: {
+  thumbnail: {
     url: string;
     alternativeText: string;
   };
-  blog_category: {
+  category: {
     Name: string;
     Slug: string;
   };
@@ -32,7 +32,7 @@ export interface Service {
   id: number;
   Title: string;
   Slug: string;
-  short_description: Block[];
+  description: string;
   Content: Block[];
   createdAt: string;
   updatedAt: string;

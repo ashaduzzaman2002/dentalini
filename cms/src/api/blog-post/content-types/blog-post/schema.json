@@ -11,24 +11,37 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string",
       "required": true
     },
-    "Slug": {
+    "slug": {
       "type": "uid",
       "required": true
     },
-    "Content": {
+    "excerpt": {
+      "type": "text"
+    },
+    "content": {
       "type": "blocks",
       "required": true
     },
-    "blog_category": {
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "category": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::blog-category.blog-category"
     },
-    "Tags": {
+    "tags": {
       "type": "enumeration",
       "enum": [
         "tips",

@@ -23,10 +23,10 @@ export default async function ServicesPreview() {
         </p>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {services?.slice(0, 4).map((service: Service) => (
-            <div key={service.id} className="p-7 bg-[#FFFFFF] shadow-lg rounded-[14px]">
+            <div key={service.id} className="p-4 bg-[#FFFFFF] shadow-lg rounded-[14px]">
               <div>
                 <img
-                  className="w-full aspect-auto object-cover rounded-[10px]"
+                  className="w-full aspect-video object-cover rounded-[10px]"
                   src={service.Image_url?.url 
                     ? getStrapiImageUrl(service.Image_url.url)
                     : "/thumbnail_shutterstock_168128375.jpg"
@@ -36,13 +36,11 @@ export default async function ServicesPreview() {
               </div>
 
               <div className="mt-[30px]">
-                <h3 className="text-center text-2xl text-[#0B131E] font-semibold mb-3">
+                <h3 className="text-center text-2xl text-[#0B131E] font-semibold mb-3 line-clamp-1">
                   {service.Title}
                 </h3>
-                <p className="t ext-center text-[#0B131E] font-normal mb-5">
-                  {service.short_description?.map(block => 
-                    block.children?.map(child => child.text).join('')
-                  ).join(' ').slice(0, 100)}...
+                <p className="t ext-center text-[#0B131E] font-normal mb-5 line-clamp-2">
+                  {service.description?.slice(0, 100)}...
                 </p>
                 <div className="flex justify-center">
                   <Link
