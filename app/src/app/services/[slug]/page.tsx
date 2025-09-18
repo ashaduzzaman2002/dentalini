@@ -42,20 +42,20 @@ export default async function ServicePage({ params }: ServicePageProps) {
   );
 }
 
-export async function generateMetadata({ params }: ServicePageProps) {
-  const { slug } = await params;
-  const { data: services } = await getService(slug);
+// export async function generateMetadata({ params }: ServicePageProps) {
+//   const { slug } = await params;
+//   const { data: services } = await getService(slug);
   
-  if (!services || services.length === 0) {
-    return {
-      title: "Service Not Found",
-    };
-  }
+//   if (!services || services.length === 0) {
+//     return {
+//       title: "Service Not Found",
+//     };
+//   }
 
-  const service = services[0];
+//   const service = services[0];
 
-  return {
-    title: service.Title,
-    description: service.description.slice(0, 160),
-  };
-}
+//   return {
+//     title: service.Title,
+//     description: service.description.slice(0, 160),
+//   };
+// }
